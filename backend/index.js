@@ -1,19 +1,27 @@
-const express = require('express');
-const cors = require('cors');
-
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
 const port = 5000;
+const userRouter = require("./routers/userRouter");
+const houseRouter = require('./routers/houseRouter');
+const utilRouter = require('./routers/util');
 
-app.use(cors({
-    origin: ['localhost:3000']
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+  })
+);
 app.use(express.json());
 
-app.get('/',(req, res)=>{
-    res.send("hello from the server!!");
+app.use("/user", userRouter);
+app.use('/house',houseRouter);
+app.use('/util',utilRouter);
+
+app.get("/", (req, res) => {
+  res.send("hello from the server!!");
 });
 
-app.listen(5000, ()=>{
-    console.log("server listening on 5000");
-})
+app.listen(5000, () => {
+  console.log("server listening on 5000");
+});

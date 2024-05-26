@@ -1,0 +1,13 @@
+.error-label{
+    color: red;
+    display: inline;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+
+  .bg-login{
+    background-image: url('../../images/landing-page.jpg');
+    background-size: cover;
+    height: 100vh;
+  }

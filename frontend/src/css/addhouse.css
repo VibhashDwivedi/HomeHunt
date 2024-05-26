@@ -1,0 +1,5 @@
+.home-bg{
+    background-image: url('../../images/landing-page.jpg');
+    background-size: cover;
+    height: auto;
+}
