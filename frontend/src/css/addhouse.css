@@ -3,3 +3,8 @@
     background-size: cover;
     height: auto;
 }
+.leaflet-div-icon {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 50% !important;
+}

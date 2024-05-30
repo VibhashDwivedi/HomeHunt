@@ -5,10 +5,13 @@ const houseSchema = new Schema({
     area: String,
     houseNo: String,
     bedrooms: Number,
-    bathrooms: Number,
     hospitalNearby: String,
     rent: Number,
     image: String,
+    location: {
+        lat: Number,
+        lng: Number
+    }
 });
 
-module.exports = model('house', houseSchema);
+module.exports = model('houses', houseSchema);

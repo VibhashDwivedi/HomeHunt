@@ -94,15 +94,16 @@ const SignUp = () => {
   return (
     <div className='signup-bg'>
     <div className='container d-flex justify-content-center'>
-    <div className="card p-5 pt-3 shadow-lg signup-card w-50 mt-5" style={{border:'none'}}>
+    <div className="card signup-card p-5 pb-1 pt-3 shadow-lg signup-card w-50 mt-5 " style={{border:'none'}}>
             <div className="card-body">
-            <i className="fa-solid fa-lock fa-2x d-block text-center mb-3"></i> 
+            <i className="fa-solid fa-lock fa-2x d-block text-center mb-3" style={{color:"white"}}></i> 
+            <h3 className='text-center' style={{color:"white"}}>Sign Up</h3>
             <form action="#" method="POST" id="registration-form" onSubmit={signupForm.handleSubmit}>
           <div className="form-group">
             <p  className='error-label'>{signupForm.touched.firstName? signupForm.errors.firstName :''}</p>
 
            <div className="d-flex">
-           <i className="fa-solid fa-user fa-2x me-3"></i>
+           <i className="fa-solid fa-user fa-2x me-3" style={{color:"white"}}></i>
            <input
               name="firstName"
               id="firstName-register"
@@ -120,7 +121,7 @@ const SignUp = () => {
             <p  className='error-label'>{signupForm.touched.lastName? signupForm.errors.lastName :''}</p>
 
            <div className="d-flex">
-           <i className="fa-solid fa-user fa-2x me-3"></i>
+           <i className="fa-solid fa-user fa-2x me-3" style={{color:"white"}}></i>
            <input
               name="lastName"
               id="lastName-register"
@@ -141,7 +142,7 @@ const SignUp = () => {
             </label> */}
             <p  className='error-label'>{signupForm.touched.profile? signupForm.errors.profile :''}</p>
         <div className="d-flex">
-            <i className="fa-solid fa-user-tie fa-2x me-3"></i>
+            <i className="fa-solid fa-user-tie fa-2x me-3" style={{color:"white"}}></i>
             <select
                 name="profile"
                 className="form-control text-muted"
@@ -158,7 +159,7 @@ const SignUp = () => {
             <p  className='error-label'>{signupForm.touched.email? signupForm.errors.email :''}</p>
            
            <div className="d-flex">
-           <i className="fa-solid fa-envelope fa-2x me-3"></i>
+           <i className="fa-solid fa-envelope fa-2x me-3" style={{color:"white"}}></i>
            <input
               name="email"
               id="email-register"
@@ -177,7 +178,7 @@ const SignUp = () => {
             <div className="form-group">
                 <p  className='error-label'>{signupForm.touched.phone? signupForm.errors.phone :''}</p>
              <div className="d-flex">
-             <i className="fa-solid fa-phone fa-2x me-3"></i>
+             <i className="fa-solid fa-phone fa-2x me-3" style={{color:"white"}}></i>
              <input
                 name="phone"
                 id="phone-register"
@@ -195,7 +196,7 @@ const SignUp = () => {
             </label> */}
             <p  className='error-label'>{signupForm.touched.password? signupForm.errors.password:''}</p>
            <div className="d-flex">
-           <i className="fa-solid fa-key fa-2x me-3"></i>
+           <i className="fa-solid fa-key fa-2x me-3" style={{color:"white"}}></i>
            <input
               name="password"
               id="password-register"
@@ -205,7 +206,7 @@ const SignUp = () => {
               onChange={signupForm.handleChange}
               value={signupForm.values.password}
             />
-             <i className="fa-solid fa-eye px-2" style={{marginLeft:'-35px',marginTop:'10px'}}
+             <i className="fa-solid fa-eye px-2" style={{marginLeft:'-35px',marginTop:'10px', color:"white"}}
              onClick={
 
 function(){
@@ -228,7 +229,7 @@ function(){
          <div className="d-flex justify-content-center">
          <button
             type="submit"
-            className="py-2 mt-4  btn btn-lg btn-info "
+            className="py-2 mt-4   btn rounded-5 btn-info "
           >
             Sign up for Rentify
           </button>

@@ -11,3 +11,9 @@
     font-size: 15px;
     margin-left: 10px;
   }
+
+  .signup-card{
+    background-color: rgba(35, 34, 36, 0.473);
+    border-radius: 10px;
+    border: none;
+  }

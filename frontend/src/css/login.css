@@ -11,3 +11,9 @@
     background-size: cover;
     height: 100vh;
   }
+
+  .login-card{
+    background-color: rgba(35, 34, 36, 0.473);
+    border-radius: 10px;
+    border: none;
+  }

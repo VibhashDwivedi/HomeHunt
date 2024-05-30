@@ -34,16 +34,16 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link"  to="/news">
-            <button className="btn btn-primary rounded-0">News</button> 
+            <NavLink className="nav-link"  to="/addhouse">
+            <button className="btn btn-primary rounded-0">Add House</button> 
             </NavLink>
           </li>
   
   
          
           <li className="nav-item">
-            <NavLink className="nav-link" to="/CryptoMeter">
-              <button className="btn btn-primary rounded-0">About Us</button>
+            <NavLink className="nav-link" to="/login">
+              <button className="btn btn-primary rounded-0">Login</button>
             </NavLink>
           </li>
          
