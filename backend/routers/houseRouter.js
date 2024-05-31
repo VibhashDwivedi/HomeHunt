@@ -33,10 +33,10 @@ router.get('/getall',(req,res)=>{
     });
   });
 
-  router.get('/seller/:sellerId', (req, res) => {
-    const sellerId = req.params.sellerId;
+  router.get('/seller/:UserId', (req, res) => {
+    const UserId = req.params.UserId;
 
-    Model.find({ sellerId: sellerId })
+    Model.find({ UserId: UserId })
         .then((result) => {
             res.json(result);
         })

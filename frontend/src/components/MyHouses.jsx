@@ -1,0 +1,94 @@
+import React, { useState, useEffect } from "react";
+import useUserContext from "../UserContext";
+import "../css/addhouse.css";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+
+const MyHouses = () => {
+  const { currentUser } = useUserContext();
+  const [houses, setHouses] = useState([]);
+  const arrowIcon = new L.DivIcon({
+    className: "leaflet-div-icon",
+    html: `<div style="font-size:34px;"><i class="fa-solid fa-location-dot"></i></div>`,
+    iconSize: [40, 40],
+  });
+
+  const fetchHouses = async () => {
+    const res = await fetch(
+      `http://localhost:5000/house/seller/${currentUser._id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (res.ok) {
+      const data = await res.json();
+      setHouses(data);
+    }
+  };
+
+  useEffect(() => {
+    fetchHouses();
+  }, []);
+
+  const displayimage = (img) => {
+    return (
+      <img
+        alt="house-img"
+        height={260}
+        width={210}
+        className=""
+        src={"http://localhost:5000/" + img}
+      />
+    );
+  };
+
+  return (
+    <div className="home-bg">
+      <div className="container pt-4">
+        <h1 className="text-center mb-2 pb-1">My Houses</h1>
+        <div className="row">
+          {houses.map((house) => (
+            <div className="col-md-6">
+              <div className="card">
+                <div className="card-body">
+                  <div className="d-flex justify-content-around">
+                    <div>{displayimage(house.image)}</div>
+                    <div>
+                      <MapContainer
+                        center={[house.location.lat, house.location.lng]}
+                        zoom={13}
+                        style={{ height: "260px", width: "210px" }}
+                      >
+                        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                        <Marker
+                          position={[house.location.lat, house.location.lng]}
+                          icon={arrowIcon}
+                        />
+                      </MapContainer>
+                    </div>
+                  </div>
+                  <div className="px-4 mx-1 py-3 pb-1">
+                  <h6 className="card-title">Location: {house.locate}</h6>
+                  <h6 className="card-text">Address: {house.place}</h6>
+                  <h6 className="card-text">Area: {house.area}</h6>
+                  <h6 className="card-text">House No: {house.houseNo}</h6>
+                  <h6 className="card-text">BHK Type: {house.bedrooms}</h6>
+                  <h6 className="card-text">Rent: {house.rent}</h6>
+                  <h6 className="card-text">Contact Number: {house.phone}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MyHouses;

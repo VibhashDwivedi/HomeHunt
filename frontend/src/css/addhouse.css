@@ -1,6 +1,7 @@
 .home-bg{
     background-image: url('../../images/landing-page.jpg');
     background-size: cover;
+    min-height: 100vh;
     height: auto;
 }
 .leaflet-div-icon {
@@ -8,3 +9,4 @@
     border: none !important;
     border-radius: 50% !important;
 }
+
