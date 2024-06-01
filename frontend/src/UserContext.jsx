@@ -45,7 +45,7 @@ export const UserProvider = ({ children }) => {
       title: "Logged out successfully",
       text: "Thank you for visiting us!",
     });
-    navigate('/home');
+    // navigate('/home');
   };
 
   return (

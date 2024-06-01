@@ -14,12 +14,14 @@ const Login = () => {
   const loginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string().required("Required"),
+    profile: Yup.string().required("Required"),
   });
 
   const loginForm = useFormik({
     initialValues: {
       email: "",
       password: "",
+      profile: "",
     },
     onSubmit: async (values) => {
       console.log(values);
@@ -137,6 +139,30 @@ const Login = () => {
                     }}
                   ></i>
                 </div>
+
+                <p className="error-label">
+                  {loginForm.touched.profile ? loginForm.errors.profile : ""}
+                </p>
+                <div className="d-flex">
+                  <i
+                    className="fa-solid fa-user fa-2x me-3"
+                    style={{ color: "white" }}
+                  ></i>
+                  <select
+                    className="form-select mb-3 p-2"
+                    name="profile"
+                    onChange={loginForm.handleChange}
+                    value={loginForm.values.profile}
+                  >
+                    <option value="">Select Profile</option>
+                    <option value="Buyer">Buyer</option>
+                    <option value="Seller">Seller</option>
+                  </select>
+
+                 
+
+                  </div>
+
               </div>
 
               <div className="d-flex justify-content-center">

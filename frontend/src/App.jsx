@@ -8,6 +8,7 @@ import AddHouse from './components/AddHouse';
 import SellerHouses from './components/SellerHouses';
 import { UserProvider } from './UserContext';
 import MyHouses from './components/MyHouses';
+import UserAuth1 from './UserAuth1';
 function App() {
   return (
     <div>
@@ -20,9 +21,9 @@ function App() {
 <Route path='/home' element={<Home/>}></Route>
 <Route path='/login' element={<Login/>}></Route>
 <Route path ='/signup' element={<SignUp/>}></Route>
-<Route path ='/addhouse' element={<AddHouse/>}></Route>
+<Route path ='/addhouse' element={<UserAuth1><AddHouse/></UserAuth1>}></Route>
 <Route path ='/houses' element={<SellerHouses/>}></Route>
-<Route path ='/myhouses' element={<MyHouses/>}></Route>
+<Route path ='/myhouses' element={<UserAuth1><MyHouses/></UserAuth1>}></Route>
 
   
 

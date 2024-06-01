@@ -25,7 +25,7 @@ const MyHouses = () => {
       }
     );
 
-    if (res.ok) {
+    if (res.status===200) {
       const data = await res.json();
       setHouses(data);
     }
@@ -73,12 +73,13 @@ const MyHouses = () => {
                     </div>
                   </div>
                   <div className="px-4 mx-1 py-3 pb-1">
-                  <h6 className="card-title">Location: {house.locate}</h6>
-                  <h6 className="card-text">Address: {house.place}</h6>
-                  <h6 className="card-text">Area: {house.area}</h6>
-                  <h6 className="card-text">House No: {house.houseNo}</h6>
-                  <h6 className="card-text">BHK Type: {house.bedrooms}</h6>
-                  <h6 className="card-text">Rent: {house.rent}</h6>
+                  <h6 className="card-title">{house.locate}</h6>
+              <h6 className="card-text">{house.houseNo} {house.place}</h6>
+              <h6 className="card-text">Near {house.area}</h6>
+              <div className="d-flex">
+                <h6 className="card-text"> {house.bedrooms} BHK |</h6>
+                <h6 className="card-text mx-1">₹{house.rent} /month</h6>
+                </div>
                   <h6 className="card-text">Contact Number: {house.phone}</h6>
                   </div>
                 </div>
