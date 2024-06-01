@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import useUserContext from "../UserContext";
+import "../App.css";
 
 const Navbar = () => {
   const { loggedIn, logout, buyer, seller } = useUserContext();
@@ -28,35 +29,44 @@ const Navbar = () => {
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               {loggedIn ? null : (
-              <NavLink className="nav-link" to="/home">
-                <button className="btn btn-primary rounded-0">Home</button>
-              </NavLink>)}
+                <NavLink className="nav-link" to="/home">
+                  <button className="btn btn-primary rounded-0">Home</button>
+                </NavLink>
+              )}
             </li>
             <li className="nav-item">
               {seller ? (
-              <NavLink className="nav-link d-hidden" to="/addhouse">
-                <button className="btn btn-primary rounded-0">Add House</button>
-              </NavLink> )
-              : null}
+                <NavLink className="nav-link d-hidden" to="/addhouse">
+                  <button className="btn btn-primary rounded-0">
+                    Add House
+                  </button>
+                </NavLink>
+              ) : null}
             </li>
             <li className="nav-item">
               {seller ? (
-              <NavLink className="nav-link d-hidden" to="/myhouses">
-                <button className="btn btn-primary rounded-0">My Houses</button>
-              </NavLink> )
-              : null}
+                <NavLink className="nav-link d-hidden" to="/myhouses">
+                  <button className="btn btn-primary rounded-0">
+                    My Houses
+                  </button>
+                </NavLink>
+              ) : null}
             </li>
             <li className="nav-item">
               {buyer ? (
-              <NavLink className="nav-link d-hidden" to="/houses">
-                <button className="btn btn-primary rounded-0">Browse</button>
-              </NavLink> )
-              : null}
+                <NavLink
+                  className="nav-link d-hidden"
+                  to="/houses"
+                  activeClassName="active-link"
+                >
+                  <button className="btn btn-primary rounded-0">Browse</button>
+                </NavLink>
+              ) : null}
             </li>
 
             <li className="nav-item">
               {loggedIn ? (
-                <NavLink className="nav-link" to="/" >
+                <NavLink className="nav-link" to="/">
                   <button className="btn btn-danger rounded-0" onClick={logout}>
                     Logout
                   </button>

@@ -54,7 +54,6 @@ const AddHouse = () => {
       rent: "",
       location: { lat: 26.840416572803626, lng: 80.91287702322008 },
       UserId: currentUser._id,
-      
     },
     onSubmit: async (values) => {
       values.image = selImage;
@@ -74,7 +73,7 @@ const AddHouse = () => {
           title: "Thank You",
           text: "House added successfully",
         });
-        navigate('/myhouses')
+        navigate("/myhouses");
         //reset form
         addHouseForm.resetForm();
       } else {

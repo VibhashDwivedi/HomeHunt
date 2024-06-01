@@ -5,9 +5,7 @@ import * as Yup from "yup";
 import "../css/signup.css";
 import { useNavigate } from "react-router-dom";
 
-
 const SignUp = () => {
-
   const navigate = useNavigate;
 
   const SignupSchema = Yup.object().shape({

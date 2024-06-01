@@ -7,10 +7,8 @@ import "../css/login.css";
 import useUserContext from "../UserContext";
 
 const Login = () => {
-
-
-  const { setLoggedIn,setBuyer, setSeller, setCurrentUser} = useUserContext();
-  const navigate = useNavigate(); 
+  const { setLoggedIn, setBuyer, setSeller, setCurrentUser } = useUserContext();
+  const navigate = useNavigate();
   const loginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string().required("Required"),
@@ -42,19 +40,17 @@ const Login = () => {
           title: "Login Successful !!",
         });
 
-         const data = await res.json();
-         sessionStorage.setItem('user',JSON.stringify(data));
-         setCurrentUser(data);
-          setLoggedIn(true);
-          if(data.profile === "Buyer"){
-            setBuyer(true);
-            navigate('/houses');
-          }else{
-            setSeller(true);
-            navigate('/myhouses');
-          }
-
-
+        const data = await res.json();
+        sessionStorage.setItem("user", JSON.stringify(data));
+        setCurrentUser(data);
+        setLoggedIn(true);
+        if (data.profile === "Buyer") {
+          setBuyer(true);
+          navigate("/houses");
+        } else {
+          setSeller(true);
+          navigate("/myhouses");
+        }
       } else if (res.status === 401) {
         Swal.fire(
           "Invalid Credentials",
@@ -158,11 +154,7 @@ const Login = () => {
                     <option value="Buyer">Buyer</option>
                     <option value="Seller">Seller</option>
                   </select>
-
-                 
-
-                  </div>
-
+                </div>
               </div>
 
               <div className="d-flex justify-content-center">

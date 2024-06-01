@@ -19,21 +19,20 @@ const SellerHouses = () => {
   const ITEMS_PER_PAGE = 2;
   const [currentPage, setCurrentPage] = useState(1);
 
-    const totalPages = Math.ceil(houses.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(houses.length / ITEMS_PER_PAGE);
 
-    const handleNext = () => {
-        setCurrentPage((page) => Math.min(page + 1, totalPages));
-    };
+  const handleNext = () => {
+    setCurrentPage((page) => Math.min(page + 1, totalPages));
+  };
 
-    const handlePrevious = () => {
-        setCurrentPage((page) => Math.max(page - 1, 1));
-    };
+  const handlePrevious = () => {
+    setCurrentPage((page) => Math.max(page - 1, 1));
+  };
 
-    const currentHouses = houses.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
-    );
-
+  const currentHouses = houses.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   const handleButtonClick = (id) => {
     if (buyer) {
@@ -159,7 +158,9 @@ const SellerHouses = () => {
 
             <div className="px-4 mx-1 py-3 pb-1">
               <h6 className="card-title">{house.locate}</h6>
-              <h6 className="card-text">{house.houseNo} {house.place}</h6>
+              <h6 className="card-text">
+                {house.houseNo} {house.place}
+              </h6>
               <h6 className="card-text">Near {house.area}</h6>
               <div className="d-flex">
                 <h6 className="card-text"> {house.bedrooms} BHK |</h6>
@@ -232,22 +233,32 @@ const SellerHouses = () => {
         <div className="row mt-3"> {displayHouses()}</div>
       </div>
       <div className="d-flex justify-content-center pb-2">
-    {Array.from({ length: totalPages }, (_, index) => (
-        <button
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
             key={index}
-            className={`pagination-dot ${index + 1 === currentPage ? 'active' : ''}`}
+            className={`pagination-dot ${
+              index + 1 === currentPage ? "active" : ""
+            }`}
             onClick={() => setCurrentPage(index + 1)}
-        />
-    ))}
-</div>
-            <div className="d-flex justify-content-center pb-5">
-      <button className="btn btn-info" onClick={handlePrevious} disabled={currentPage === 1}>
-      <i class="fa-solid fa-chevron-left fa-2xl"></i> 
-            </button>
-            <button className="btn btn-info mx-2 " onClick={handleNext} disabled={currentPage === totalPages}>
-            <i class="fa-solid fa-chevron-right fa-2xl"></i> 
-            </button>
-            </div>
+          />
+        ))}
+      </div>
+      <div className="d-flex justify-content-center pb-5">
+        <button
+          className="btn btn-info"
+          onClick={handlePrevious}
+          disabled={currentPage === 1}
+        >
+          <i class="fa-solid fa-chevron-left fa-2xl"></i>
+        </button>
+        <button
+          className="btn btn-info mx-2 "
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+        >
+          <i class="fa-solid fa-chevron-right fa-2xl"></i>
+        </button>
+      </div>
     </div>
   );
 };

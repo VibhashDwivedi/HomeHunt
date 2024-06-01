@@ -10,4 +10,6 @@
     font-family: Montserrat;
   }
   
-  
+  .active-link {
+    color: #f00; /* Change to the color you want for the active link */
+}
