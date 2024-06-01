@@ -7,10 +7,12 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import useUserContext from "../UserContext";
+import { useNavigate } from "react-router-dom";
 
 const AddHouse = () => {
   const { currentUser } = useUserContext();
   const [selImage, setselImage] = useState("");
+  const navigate = useNavigate();
   const arrowIcon = new L.DivIcon({
     className: "leaflet-div-icon",
     html: `<div style="font-size:34px;"><i class="fa-solid fa-location-dot"></i></div>`,
@@ -52,6 +54,7 @@ const AddHouse = () => {
       rent: "",
       location: { lat: 26.840416572803626, lng: 80.91287702322008 },
       UserId: currentUser._id,
+      
     },
     onSubmit: async (values) => {
       values.image = selImage;
@@ -71,6 +74,9 @@ const AddHouse = () => {
           title: "Thank You",
           text: "House added successfully",
         });
+        navigate('/myhouses')
+        //reset form
+        addHouseForm.resetForm();
       } else {
         Swal.fire({
           icon: "error",

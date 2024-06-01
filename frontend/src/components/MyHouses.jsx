@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { NavLink } from "react-router-dom";
+import { toast } from 'react-hot-toast'
 
 const MyHouses = () => {
   const { currentUser } = useUserContext();
@@ -14,6 +15,23 @@ const MyHouses = () => {
     html: `<div style="font-size:34px;"><i class="fa-solid fa-location-dot"></i></div>`,
     iconSize: [40, 40],
   });
+
+  const deleteHouse= async  (id) =>{
+    console.log(id);
+    //pass alert before deleting
+    const c =  window.confirm('Are you sure you want to delete this post? ');
+    if(c===true ){
+    const res = await  fetch('http://localhost:5000/house/delete/'+id, {method:'DELETE'});
+    if(res.status === 200){
+        
+        toast.success('House Details deleted successfully')
+    } 
+  }
+  else 
+  {
+    toast.error('House Details not deleted')
+  }
+  }
 
   const fetchHouses = async () => {
     const res = await fetch(
@@ -83,7 +101,11 @@ const MyHouses = () => {
                 </div>
                 <div className="d-flex">
                   <h6 className="card-text">Contact Number: {house.phone}</h6>
-                  <NavLink to={`/edit/${house._id}`} className="btn btn-secondary btn-sm ms-auto">Edit</NavLink>
+                  <div className="d-flex ms-auto">
+                  <NavLink to={`/edit/${house._id}`} className="btn btn-secondary btn-sm ">Edit</NavLink>
+                  <button  className="btn btn-danger btn-sm mx-2" onClick={() =>deleteHouse(house._id)}>Delete</button>
+                  </div>
+                  
                  
                   </div>
                   </div>

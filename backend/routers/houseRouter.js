@@ -69,4 +69,18 @@ router.put('/edit/:id',(req,res)=>{
     });
 }
 );
+
+router.delete('/delete/:id',(req,res)=>{
+    const id = req.params.id;
+    Model.findByIdAndDelete(id)
+    .then((result) => {
+        res.json(result);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json();
+    });
+}
+);
+
+
 module.exports = router;

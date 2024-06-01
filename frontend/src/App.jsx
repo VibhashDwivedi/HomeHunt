@@ -10,9 +10,11 @@ import { UserProvider } from './UserContext';
 import MyHouses from './components/MyHouses';
 import UserAuth1 from './UserAuth1';
 import EditHouse from './components/EditHouse';
+import { Toaster } from 'react-hot-toast';
 function App() {
   return (
     <div>
+       <Toaster position='top-center'/>
       <BrowserRouter>
       <UserProvider>
       <Navbar/>
@@ -33,6 +35,7 @@ function App() {
 </UserProvider>
 
 </BrowserRouter>
+
 
 
     </div>

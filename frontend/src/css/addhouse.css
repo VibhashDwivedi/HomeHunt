@@ -9,3 +9,18 @@
     border: none !important;
     border-radius: 50% !important;
 }
+
+.pagination-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 2px;
+    cursor: pointer;
+    border: none;
+}
+
+.pagination-dot.active {
+    background-color: blueviolet;
+}
