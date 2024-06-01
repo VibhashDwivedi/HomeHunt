@@ -56,7 +56,7 @@ const Navbar = () => {
 
             <li className="nav-item">
               {loggedIn ? (
-                <NavLink className="nav-link" >
+                <NavLink className="nav-link" to="/" >
                   <button className="btn btn-danger rounded-0" onClick={logout}>
                     Logout
                   </button>

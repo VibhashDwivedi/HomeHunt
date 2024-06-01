@@ -45,4 +45,28 @@ router.get('/getall',(req,res)=>{
             res.status(500).json();
         });
 });
+
+router.get('/getbyid/:id',(req,res)=>{
+    const id = req.params.id;
+    Model.findById(id)
+    .then((result) => {
+        res.json(result);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json();
+    });
+}
+);
+
+router.put('/edit/:id',(req,res)=>{
+    const id = req.params.id;
+    Model.findByIdAndUpdate(id,req.body)
+    .then((result) => {
+        res.json(result);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json();
+    });
+}
+);
 module.exports = router;

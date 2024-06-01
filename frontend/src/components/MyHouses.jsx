@@ -4,6 +4,7 @@ import "../css/addhouse.css";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { NavLink } from "react-router-dom";
 
 const MyHouses = () => {
   const { currentUser } = useUserContext();
@@ -80,7 +81,11 @@ const MyHouses = () => {
                 <h6 className="card-text"> {house.bedrooms} BHK |</h6>
                 <h6 className="card-text mx-1">₹{house.rent} /month</h6>
                 </div>
+                <div className="d-flex">
                   <h6 className="card-text">Contact Number: {house.phone}</h6>
+                  <NavLink to={`/edit/${house._id}`} className="btn btn-secondary btn-sm ms-auto">Edit</NavLink>
+                 
+                  </div>
                   </div>
                 </div>
               </div>
