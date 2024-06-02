@@ -36,14 +36,15 @@ const SellerHouses = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
+  console.log(process.env.REACT_APP_EMAILJS_TEMPLATE_ID);
   const  sendEmail= (toName, toEmail, fromfName, fromLname, fromEmail, address ) => {
-    emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, {
+    emailjs.send('service_iovrq1a', process.env.REACT_APP_EMAILJS_TEMPLATE_ID, {
       to_name: toName,
       to_email: toEmail,
       from_name: fromfName+" "+fromLname,
       from_email: fromEmail,
       message: `Hello, I am ${fromfName+" "+fromLname} and I am interested in renting your property located at ${address}. Please contact me to discuss further details. ${fromEmail} `,
-    }, process.env.REACT_APP_EMAILJS_USER_ID)
+    }, '52_Rdx207M2vxhOEs')
       .then(() => {
          console.log('SUCCESS!');
          toast.success('Email Sent Successfully');
