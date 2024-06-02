@@ -38,6 +38,17 @@ const SellerHouses = () => {
 
   console.log(process.env.REACT_APP_EMAILJS_TEMPLATE_ID);
   const  sendEmail= (toName, toEmail, fromfName, fromLname, fromEmail, address ) => {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Are you sure?',
+      text: `You are about to send an email to ${toName} with your details .`,
+      
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, send it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
     emailjs.send('service_iovrq1a', process.env.REACT_APP_EMAILJS_TEMPLATE_ID, {
       to_name: toName,
       to_email: toEmail,
@@ -52,7 +63,14 @@ const SellerHouses = () => {
          console.log('FAILED...', err);
           toast.error('Email Failed to Send');
       });
+    }
+  });
   }
+
+  const handleHideContactDetails = () => {
+    setShowContactDetails(false);
+    setClickedHouseId(null);
+  };
 
   const handleButtonClick = (id) => {
     if (loggedIn) {
@@ -178,28 +196,46 @@ const SellerHouses = () => {
 
             <div className="px-4 mx-1 py-3 pb-1">
               <h6 className="card-title">{house.locate}</h6>
-              <h6 className="card-text">
+              <p className="card-text">
                 {house.houseNo} {house.place}
-              </h6>
-              <h6 className="card-text">Near {house.area}</h6>
-              <div className="d-flex">
-                <h6 className="card-text"> {house.bedrooms} BHK |</h6>
-                <h6 className="card-text mx-1">₹{house.rent} /month</h6>
+              </p>
+              <div className="d-flex" style={{marginTop:'-10px'}}>
+              <p className="card-text">Near {house.area}</p>
+              
+                <p className="text-secondary ms-auto"> {house.bedrooms} BHK |</p>
+                <p className="text-secondary ms-2">₹{house.rent}/month</p>
               </div>
+              {showContactDetails && clickedHouseId === house._id ? (
+                <button
+                className="btn btn-danger btn-sm rounded-0"
+                onClick={() => handleHideContactDetails()}
+                style={{marginTop:'-10px'}}
+              >
+                Hide Contact Details
+              </button>):(
 
               <button
-                className="btn btn-info"
+                className="btn btn-info btn-sm rounded-0"
                 onClick={() => handleButtonClick(house._id)}
+                style={{marginTop:'-10px'}}
               >
                 Show Contact Details
-              </button>
+              </button>)
+  }
               {showContactDetails && clickedHouseId === house._id && (
                 <div>
-                  <h6 className="mt-1">Owner Name: {house.username}</h6>
-                  <h6 className="">Contact Number: {house.phone}</h6>
-                  <div className="d-flex">
-                  <h6>Email: {house.email}</h6>
-                  <button className="btn btn-primary ms-auto" onClick={() =>sendEmail(house.username, house.email, currentUser.firstName,currentUser.lastName, currentUser.email, house.place)}>Interested</button>
+                  <p className="mt-1">Owner Name: {house.username}</p>
+                  <div className="d-flex" style={{marginTop:'-10px'}}>
+                  <p className="" >Contact Number: {house.phone}</p>
+                  <a className="ms-auto" href={`https://wa.me/+91${house.phone}?text=${encodeURIComponent(`Hello, I am  interested in renting your property located at ${house.place}. `)}`} target="_blank">
+                  <i class="fa-brands fa-whatsapp fa-beat fa-xl "  style={{color:'#03e26f'}} title="Message on Whatsapp"></i>
+</a>
+</div>
+                  <div className="d-flex" style={{marginTop:'-10px'}}>
+                  <p>Email: {house.email}</p>
+                  <div className=" ms-auto" onClick={() =>sendEmail(house.username, house.email, currentUser.firstName,currentUser.lastName, currentUser.email, house.place)}>
+                  <i class="fa-sharp fa-solid fa-paper-plane fa-lg fa-beat" style={{color:'#0a0123'}} title="Send mail" ></i>
+                  </div>
 
                   </div>
                  
