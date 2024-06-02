@@ -6,9 +6,11 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Swal from "sweetalert2";
 import useUserContext from "../UserContext";
+import { toast } from "react-hot-toast";
+import emailjs from 'emailjs-com';
 
 const SellerHouses = () => {
-  const { buyer, showContactDetails, setShowContactDetails } = useUserContext();
+  const { loggedIn, showContactDetails, setShowContactDetails, currentUser } = useUserContext();
   const navigate = useNavigate();
   const [houses, setHouses] = useState([]);
   const [search, setSearch] = useState([]);
@@ -34,8 +36,25 @@ const SellerHouses = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
+  const  sendEmail= (toName, toEmail, fromfName, fromLname, fromEmail, address ) => {
+    emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, {
+      to_name: toName,
+      to_email: toEmail,
+      from_name: fromfName+" "+fromLname,
+      from_email: fromEmail,
+      message: `Hello, I am ${fromfName+" "+fromLname} and I am interested in renting your property located at ${address}. Please contact me to discuss further details. ${fromEmail} `,
+    }, process.env.REACT_APP_EMAILJS_USER_ID)
+      .then(() => {
+         console.log('SUCCESS!');
+         toast.success('Email Sent Successfully');
+      }, (err) => {
+         console.log('FAILED...', err);
+          toast.error('Email Failed to Send');
+      });
+  }
+
   const handleButtonClick = (id) => {
-    if (buyer) {
+    if (loggedIn) {
       setShowContactDetails(true);
       setClickedHouseId(id);
     } else {
@@ -175,7 +194,14 @@ const SellerHouses = () => {
               </button>
               {showContactDetails && clickedHouseId === house._id && (
                 <div>
-                  <h6 className="mt-1">Contact Number: {house.phone}</h6>
+                  <h6 className="mt-1">Owner Name: {house.username}</h6>
+                  <h6 className="">Contact Number: {house.phone}</h6>
+                  <div className="d-flex">
+                  <h6>Email: {house.email}</h6>
+                  <button className="btn btn-primary ms-auto" onClick={() =>sendEmail(house.username, house.email, currentUser.firstName,currentUser.lastName, currentUser.email, house.place)}>Interested</button>
+
+                  </div>
+                 
                 </div>
               )}
             </div>

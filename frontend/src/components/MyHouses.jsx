@@ -100,6 +100,8 @@ const MyHouses = () => {
                       <h6 className="card-text"> {house.bedrooms} BHK |</h6>
                       <h6 className="card-text mx-1">₹{house.rent} /month</h6>
                     </div>
+                    <h6 className="mt-1">Owner Name: {house.username}</h6>
+                  <h6>Email: {house.email}</h6>
                     <div className="d-flex">
                       <h6 className="card-text">
                         Contact Number: {house.phone}

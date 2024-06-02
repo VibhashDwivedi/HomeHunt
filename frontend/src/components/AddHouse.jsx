@@ -54,6 +54,8 @@ const AddHouse = () => {
       rent: "",
       location: { lat: 26.840416572803626, lng: 80.91287702322008 },
       UserId: currentUser._id,
+      username: currentUser.firstName + " " + currentUser.lastName,
+      email: currentUser.email,
     },
     onSubmit: async (values) => {
       values.image = selImage;

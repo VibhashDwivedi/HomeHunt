@@ -7,7 +7,7 @@ import "../css/login.css";
 import useUserContext from "../UserContext";
 
 const Login = () => {
-  const { setLoggedIn, setBuyer, setSeller, setCurrentUser } = useUserContext();
+  const {loggedIn, setLoggedIn, setBuyer, setSeller, setCurrentUser } = useUserContext();
   const navigate = useNavigate();
   const loginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -22,6 +22,16 @@ const Login = () => {
       profile: "",
     },
     onSubmit: async (values) => {
+
+      if(loggedIn)
+        {
+          Swal.fire({
+            icon: "error",
+            title: "A user is Already Logged In",
+            text: "Please logout to login again",
+          });
+          return;
+        }
       console.log(values);
 
       //submit values to backend

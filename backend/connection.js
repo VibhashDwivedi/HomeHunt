@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
+require('dotenv').config({ path: '../.env' });
 
 
-
-const url ="mongodb+srv://vibhashdwivedi:root@cluster0.6qvouo6.mongodb.net/rentifydb?retryWrites=true&w=majority"
+const url = process.env.MONGODB_URL;
 
 
 mongoose.connect(url)

@@ -14,6 +14,8 @@ const houseSchema = new Schema({
         lng: Number
     },
     UserId: String,
+    username: String,
+    email: String
 });
 
 module.exports = model('houses', houseSchema);

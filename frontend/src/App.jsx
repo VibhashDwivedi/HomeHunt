@@ -11,6 +11,7 @@ import MyHouses from './components/MyHouses';
 import UserAuth1 from './UserAuth1';
 import EditHouse from './components/EditHouse';
 import { Toaster } from 'react-hot-toast';
+import Error404 from './components/Error404';
 function App() {
   return (
     <div>
@@ -28,7 +29,7 @@ function App() {
 <Route path ='/houses' element={<SellerHouses/>}></Route>
 <Route path ='/myhouses' element={<UserAuth1><MyHouses/></UserAuth1>}></Route>
 <Route path ='/edit/:id' element={<UserAuth1><EditHouse/></UserAuth1>}></Route>
-
+<Route path="*" element={<Error404/>}></Route>
   
 
 </Routes>

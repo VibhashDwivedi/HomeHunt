@@ -4,10 +4,11 @@ import Swal from "sweetalert2";
 import * as Yup from "yup";
 import "../css/signup.css";
 import { useNavigate } from "react-router-dom";
+import useUserContext from "../UserContext";
 
 const SignUp = () => {
   const navigate = useNavigate;
-
+ const {loggedIn}= useUserContext();
   const SignupSchema = Yup.object().shape({
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
@@ -52,6 +53,15 @@ const SignUp = () => {
       profile: "",
     },
     onSubmit: async (values) => {
+      if(loggedIn)
+        {
+          Swal.fire({
+            icon: "error",
+            title: "A user is Already Logged In",
+            text: "Please logout to signup again",
+          });
+          return;
+        }
       console.log(values);
       //sending request to backend
       const res = await fetch("http://localhost:5000/user/add", {
@@ -61,6 +71,7 @@ const SignUp = () => {
           "Content-Type": "application/json",
         },
       });
+      
 
       console.log(res.status);
       if (res.status === 200) {
