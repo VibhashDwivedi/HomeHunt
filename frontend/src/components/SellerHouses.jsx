@@ -36,7 +36,7 @@ const SellerHouses = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
-  console.log(process.env.REACT_APP_EMAILJS_TEMPLATE_ID);
+  
   const  sendEmail= (toName, toEmail, fromfName, fromLname, fromEmail, address ) => {
     Swal.fire({
       icon: 'warning',
@@ -49,13 +49,13 @@ const SellerHouses = () => {
       confirmButtonText: 'Yes, send it!'
     }).then((result) => {
       if (result.isConfirmed) {
-    emailjs.send('service_iovrq1a', process.env.REACT_APP_EMAILJS_TEMPLATE_ID, {
+    emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, {
       to_name: toName,
       to_email: toEmail,
       from_name: fromfName+" "+fromLname,
       from_email: fromEmail,
       message: `Hello, I am ${fromfName+" "+fromLname} and I am interested in renting your property located at ${address}. Please contact me to discuss further details. ${fromEmail} `,
-    }, '52_Rdx207M2vxhOEs')
+    }, process.env.REACT_APP_EMAILJS_USER_ID)
       .then(() => {
          console.log('SUCCESS!');
          toast.success('Email Sent Successfully');
@@ -146,7 +146,7 @@ const SellerHouses = () => {
 
   useEffect(() => {
     displayFilteredHouses();
-  }, [locationFilter, bhkFilter, priceFilter]);
+  }, [locationFilter, bhkFilter, priceFilter, currentPage]);
 
   const searchByLocation = (e) => {
     setLocationFilter(e.target.value);

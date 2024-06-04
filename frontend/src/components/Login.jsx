@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import "../css/login.css";
 import useUserContext from "../UserContext";
 
+
 const Login = () => {
   const {loggedIn, setLoggedIn, setBuyer, setSeller, setCurrentUser } = useUserContext();
   const navigate = useNavigate();
