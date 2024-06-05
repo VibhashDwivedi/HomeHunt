@@ -60,7 +60,7 @@ const AddHouse = () => {
     onSubmit: async (values) => {
       values.image = selImage;
       console.log(values);
-      const res = await fetch("http://localhost:5000/house/add", {
+      const res = await fetch("https://homehunt-b54g.onrender.com/house/add", {
         method: "POST",
         body: JSON.stringify(values),
         headers: {
@@ -94,7 +94,7 @@ const AddHouse = () => {
     setselImage(file.name);
     const fd = new FormData();
     fd.append("myfile", file);
-    const res = await fetch("http://localhost:5000/util/uploadfile", {
+    const res = await fetch("https://homehunt-b54g.onrender.com/util/uploadfile", {
       method: "POST",
       body: fd,
     });

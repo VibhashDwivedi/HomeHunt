@@ -36,7 +36,7 @@ const Login = () => {
       console.log(values);
 
       //submit values to backend
-      const res = await fetch("http://localhost:5000/user/authenticate", {
+      const res = await fetch("https://homehunt-b54g.onrender.com/user/authenticate", {
         method: "POST",
         body: JSON.stringify(values),
         headers: {

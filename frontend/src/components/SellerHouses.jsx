@@ -99,7 +99,7 @@ const SellerHouses = () => {
   });
 
   const fetchHouses = async () => {
-    const res = await fetch(`http://localhost:5000/house/getall`, {
+    const res = await fetch(`https://homehunt-b54g.onrender.com/house/getall`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -167,7 +167,7 @@ const SellerHouses = () => {
         height={260}
         width={210}
         className=""
-        src={"http://localhost:5000/" + img}
+        src={"https://homehunt-b54g.onrender.com/" + img}
       />
     );
   };

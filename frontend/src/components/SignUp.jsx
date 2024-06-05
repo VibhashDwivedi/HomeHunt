@@ -30,7 +30,7 @@ const SignUp = () => {
 
   //check if email is present
   const checkAvailabilityEmail = async (email) => {
-    const res = await fetch("http://localhost:5000/user/checkemail/" + email, {
+    const res = await fetch("https://homehunt-b54g.onrender.com/user/checkemail/" + email, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const SignUp = () => {
         }
       console.log(values);
       //sending request to backend
-      const res = await fetch("http://localhost:5000/user/add", {
+      const res = await fetch("https://homehunt-b54g.onrender.com/user/add", {
         method: "POST",
         body: JSON.stringify(values),
         headers: {

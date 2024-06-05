@@ -13,7 +13,7 @@ const EditHouse = () => {
   const navigate = useNavigate();
 
   const fetchHouse = async () => {
-    const res = await fetch(`http://localhost:5000/house/getbyid/${id}`, {
+    const res = await fetch(`https://homehunt-b54g.onrender.com/house/getbyid/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const EditHouse = () => {
     onSubmit: async (values) => {
       values.image = selImage;
       console.log(values);
-      const res = await fetch("http://localhost:5000/house/edit/" + id, {
+      const res = await fetch("https://homehunt-b54g.onrender.com/house/edit/" + id, {
         method: "PUT",
         body: JSON.stringify(values),
         headers: {
@@ -89,7 +89,7 @@ const EditHouse = () => {
     setselImage(file.name);
     const fd = new FormData();
     fd.append("myfile", file);
-    const res = await fetch("http://localhost:5000/util/uploadfile", {
+    const res = await fetch("https://homehunt-b54g.onrender.com/util/uploadfile", {
       method: "POST",
       body: fd,
     });

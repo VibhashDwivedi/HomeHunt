@@ -21,7 +21,7 @@ const MyHouses = () => {
     //pass alert before deleting
     const c = window.confirm("Are you sure you want to delete this post? ");
     if (c === true) {
-      const res = await fetch("http://localhost:5000/house/delete/" + id, {
+      const res = await fetch("https://homehunt-b54g.onrender.com/house/delete/" + id, {
         method: "DELETE",
       });
       if (res.status === 200) {
@@ -34,7 +34,7 @@ const MyHouses = () => {
 
   const fetchHouses = async () => {
     const res = await fetch(
-      `http://localhost:5000/house/seller/${currentUser._id}`,
+      `https://homehunt-b54g.onrender.com/house/seller/${currentUser._id}`,
       {
         method: "GET",
         headers: {
@@ -60,7 +60,7 @@ const MyHouses = () => {
         height={260}
         width={210}
         className=""
-        src={"http://localhost:5000/" + img}
+        src={"https://homehunt-b54g.onrender.com/" + img}
       />
     );
   };
