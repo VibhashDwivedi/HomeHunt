@@ -10,7 +10,7 @@ const utilRouter = require('./routers/util');
 
 app.use(
   cors({
-    origin: [ "https://home-hunt-find-home-near-you.vercel.app/"],
+    origin: [ "https://home-hunt-find-home-near-you.vercel.app", "http://localhost:3000"],
   })
 );
 app.use(express.json());
