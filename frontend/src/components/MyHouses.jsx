@@ -51,7 +51,7 @@ const MyHouses = () => {
 
   useEffect(() => {
     fetchHouses();
-  }, []);
+  }, [deleteHouse]);
 
   const displayimage = (img) => {
     return (

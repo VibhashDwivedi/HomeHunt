@@ -12,7 +12,7 @@ const Navbar = () => {
           className="navbar-brand  display-2 fs-2 fw-bold text-white title2"
           to="/home"
         >
-          Rentify
+          HomeHunt
         </NavLink>
         <button
           className="navbar-toggler"
