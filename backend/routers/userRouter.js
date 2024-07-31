@@ -1,5 +1,5 @@
 const express = require('express');
-
+const bcrypt = require('bcrypt');
 
 const router = express.Router();
 const Model = require('../models/userModel');
@@ -8,18 +8,20 @@ const Model = require('../models/userModel');
 
 
 
-router.post('/add',(req,res)=>{
+router.post('/add', async (req,res)=>{
+    try{
     console.log(req.body);
-    res.send('response from user add')
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const userData = { ...req.body, password: hashedPassword };
+    // res.send('response from user add')
     //saving the data to mongodb
-    new Model(req.body).save()
-    .then((result) => {
-      //res.json(result);
-    })
-    .catch((err) => {
+    const result =  await new Model(userData).save()
+    res.json(result);
+    }
+    catch(err)  {
         console.log(err);
         res.status(500).json();
-    });
+    };
 });
 
 
