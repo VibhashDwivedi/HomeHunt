@@ -50,7 +50,7 @@ router.post('/authenticate', async (req,res)=>{
 
         const isMatch = await bcrypt.compare(req.body.password, user.password);
         if (isMatch) {
-            res.send(req.body);
+            res.send(user);
         } else {
             res.status(400).send('Wrong credentials');
         }
