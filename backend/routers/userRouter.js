@@ -43,7 +43,7 @@ router.post('/add', async (req,res)=>{
 
 router.post('/authenticate', async (req,res)=>{
     try {
-        const user = await Model.findOne({ email: req.body.email });
+        const user = await Model.findOne({ email: req.body.email, profile: req.body.profile });
         if (!user) {
             return res.status(400).send('User not found');
         }
