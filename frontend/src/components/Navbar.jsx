@@ -53,7 +53,7 @@ const Navbar = () => {
               ) : null}
             </li>
             <li className="nav-item">
-              {loggedIn ? (
+              {buyer ? (
                 <NavLink
                   className="nav-link d-hidden"
                   to="/houses"
