@@ -41,17 +41,23 @@ router.post('/add', async (req,res)=>{
     })
 
 
-router.post('/authenticate',(req,res)=>{
-  Model.findOne(req.body)
-  .then((result) => {
-      if(result !== null)
-      res.json(result);
-      else
-      res.status(401).json({message:'login failed'})
-  }).catch((err) => {
-      console.log(err);
-      res.status(500).json();
-  });
+router.post('/authenticate', async (req,res)=>{
+    try {
+        const user = await Model.findOne({ email: req.body.email });
+        if (!user) {
+            return res.status(400).send('User not found');
+        }
+
+        const isMatch = await bcrypt.compare(req.body.password, user.password);
+        if (isMatch) {
+            res.send('Login successful');
+        } else {
+            res.status(400).send('Wrong credentials');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error during login');
+    }
 })
 
 
